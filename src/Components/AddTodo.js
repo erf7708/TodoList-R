@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { add } from '../Store/Slice/TodoList';
 
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 function AddTodo(props) {
     const dispatch = useDispatch();
     const[text,setText] =useState("");
-    const SubmitHandler =() =>{
+    const SubmitHandler =async() =>{
         if(text.length >0) {
-            dispatch(add({
-                id:Date.now(),
+
+            const res = await axios.post('https://63b2a44f76028b55ae73e520.endapi.io/todos',{
                 text,
                 done:false
-            }))
+            })
+
+            dispatch(add(res.data.data))
         }
 
         setText("")

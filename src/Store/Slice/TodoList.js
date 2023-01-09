@@ -7,6 +7,11 @@ const TodoList = createSlice({
         list:[]
     },
     reducers:{
+
+        getData : (state,action) =>{
+            state.list=action.payload
+        },
+
         add : (state,action)=>{
                 state.list.push(action.payload)
         },
@@ -31,6 +36,6 @@ const TodoList = createSlice({
     }
 })
 
-export const {add,deleteTodo,editTodo} = TodoList.actions
+export const {add,deleteTodo,editTodo,getData} = TodoList.actions
 
 export default TodoList.reducer;
